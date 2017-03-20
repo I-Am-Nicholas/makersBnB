@@ -1,7 +1,5 @@
 require 'data_mapper'
 require 'dm-postgres-adapter'
-
-
 class Place
   include DataMapper::Resource
 
@@ -11,6 +9,6 @@ class Place
   property :Price, Integer
   property :Description, Text
 
-  belongs_to :users
+  belongs_to :user
 
 end

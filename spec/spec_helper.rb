@@ -2,6 +2,7 @@ $VERBOSE = nil
 require 'coveralls'
 require 'simplecov'
 
+
 SimpleCov.formatters = [
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
@@ -13,7 +14,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
-
+require './app/models/db'
 ENV['RACK_ENV'] = 'test'
 
 Capybara.app = BNB
@@ -54,7 +55,7 @@ RSpec.configure do |config|
   config.append_after(:each) do
     DatabaseCleaner.clean
   end
-
+config.include Capybara::DSL
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
