@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+
+<body>
+  <% if flash[:notice] %>
+  <div id='notice'><%= flash[:notice] %></div>
+  <% end %>
+
+  <% if current_user %>
+  Welcome <%= current_user.name %>!
+  <% end %>
+  <%= yield %>
+</body>
+</html>

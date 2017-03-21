@@ -1,13 +1,13 @@
 ENV["RACK_ENV"] ||= 'development'
 
 require './app/models/database_setup'
-
 require 'sinatra/base'
-
+require 'sinatra/flash'
 
 class BNB < Sinatra::Base
   enable :sessions
   set :sessions_secret, 'super secret'
+  register Sinatra::Flash
 
   get '/' do
     erb :'index/index'
@@ -28,6 +28,21 @@ class BNB < Sinatra::Base
                 email: params[:email])
     session[:user_id] = user.id
     redirect ('/')
+  end
+
+  get '/sessions/new' do
+    erb :'sessions/new'
+  end
+
+  post '/sessions' do
+    user = User.authenticate(params[:email], params[:password])
+    if user
+      session[:user_id] = user.id
+      redirect to('/')
+    else
+      flash.now[:errors] = ['The email or password is incorrect']
+      erb :'sessions/new'
+    end
   end
 
   helpers do
