@@ -24,7 +24,7 @@ class BNB < Sinatra::Base
   post '/users' do
     user = User.create(name: params[:name],
                 password: params[:password],
-
+                # confirm_password to be included
                 email: params[:email])
     session[:user_id] = user.id
     redirect ('/')
