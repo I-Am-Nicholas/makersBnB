@@ -3,7 +3,7 @@ feature 'User Sign in' do
   let!(:user) do
     User.create(name: 'test',
                 password: 'secret1234',
-                # password_confirmation: 'secret1234',
+                password_confirmation: 'secret1234',
                 email: 'user@example.com')
   end
 

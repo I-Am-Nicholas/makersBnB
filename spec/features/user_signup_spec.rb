@@ -4,10 +4,4 @@ feature 'User Sign-Up' do
     expect(page).to have_content('Welcome Albert!')
     expect(User.first.email).to eq('albert@albert.com')
   end
-
-  scenario 'welcomes user after signing up' do
-    visit '/users/new'
-    sign_up
-    expect(page).to have_content('Welcome Albert!')
-  end
 end
