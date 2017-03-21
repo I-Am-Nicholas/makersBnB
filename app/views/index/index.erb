@@ -1,0 +1,7 @@
+"Hello World!"
+<!-- "Welcome Albert!" -->
+
+<% if current_user %>
+  Welcome, <%= current_user.name %>
+<% end %>
+<%= yield %>
