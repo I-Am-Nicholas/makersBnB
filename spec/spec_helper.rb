@@ -9,12 +9,12 @@ SimpleCov.formatters = [
 ]
 Coveralls.wear!
 
-require './app/controllers/bnb'
+require './app/bnb'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
-require './app/models/db'
+
 ENV['RACK_ENV'] = 'test'
 
 Capybara.app = BNB

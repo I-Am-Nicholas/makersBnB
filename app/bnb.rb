@@ -1,5 +1,7 @@
 ENV["RACK_ENV"] ||= 'development'
 
+require './app/models/database_setup'
+
 require 'sinatra/base'
 
 
@@ -8,6 +10,7 @@ class BNB < Sinatra::Base
   get '/' do
     "Hello World!"
   end
+
  get '/places/new' do
    erb :'places/new'
  end

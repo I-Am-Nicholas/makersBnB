@@ -1,3 +1,3 @@
-require './app/controllers/bnb'
+require './app/bnb'
 
 run BNB
