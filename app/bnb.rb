@@ -19,10 +19,10 @@ class BNB < Sinatra::Base
     place = Place.create(name: params[:placename], location: params[:location], description: params[:description], price: params[:price])
     redirect '/places'
   end
-  
-  get '/places' do
 
-      erb :'places/list'
+  get '/places' do
+    @places = Place.all
+    erb :'places/list'
   end
   run! if app_file == $0
 
