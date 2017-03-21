@@ -7,6 +7,8 @@ class User
 
   property :id, Serial
   property :name, String
+  property :password, Text
+  property :email, String
 
   has n, :places
 
