@@ -4,11 +4,11 @@ class Place
   include DataMapper::Resource
 
   property :id, Serial
-  property :Name, String
-  property :Location, String
-  property :Price, Integer
-  property :Description, Text
+  property :name, String
+  property :location, String
+  property :price, Integer
+  property :description, Text
 
-  belongs_to :user
+  # belongs_to :user
 
 end

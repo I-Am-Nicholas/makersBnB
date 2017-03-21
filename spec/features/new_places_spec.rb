@@ -7,6 +7,6 @@ feature 'posting a new place for hire' do
     fill_in 'description', with: 'Listed building, second floor'
     fill_in 'price', with: 10
     click_button('submit')
-    expect(page).to have_content('Hello World!')
+    expect(page).to have_content('The Joyroom')
   end
 end

@@ -8,6 +8,7 @@ SimpleCov.formatters = [
   Coveralls::SimpleCov::Formatter
 ]
 Coveralls.wear!
+ENV['RACK_ENV'] = 'test'
 
 require './app/bnb'
 require 'capybara'
@@ -15,7 +16,6 @@ require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
 
-ENV['RACK_ENV'] = 'test'
 
 Capybara.app = BNB
 
@@ -55,7 +55,7 @@ RSpec.configure do |config|
   config.append_after(:each) do
     DatabaseCleaner.clean
   end
-config.include Capybara::DSL
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

@@ -11,11 +11,19 @@ class BNB < Sinatra::Base
     "Hello World!"
   end
 
- get '/places/new' do
-   erb :'places/new'
- end
+  get '/places/new' do
+    erb :'places/new'
+  end
 
+  post '/places/new' do
+    place = Place.create(name: params[:placename], location: params[:location], description: params[:description], price: params[:price])
+    redirect '/places'
+  end
+  
+  get '/places' do
 
+      erb :'places/list'
+  end
   run! if app_file == $0
 
 end
