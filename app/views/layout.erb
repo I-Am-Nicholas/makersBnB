@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>MakersBnB</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+  </head>
+  <body>
+    Welcome Owner
+    <% if flash[:message] %>
+      <div id='notice'><%= flash[:message] %></div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
