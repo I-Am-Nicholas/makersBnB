@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>List of places for hire</title>
+  </head>
+  <body>
+    <div>
+      <ul id="placeslist">
+        <% @places.each do |place| %>
+        <li>
+            Name: <%= place.name %><br>
+            Location:<%= place.location %><br>
+            Description:<%= place.description %><br>
+            Price per night:<%= place.price %><br>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </body>
+</html>

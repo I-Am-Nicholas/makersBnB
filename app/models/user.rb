@@ -8,6 +8,6 @@ class User
   property :id, Serial
   property :name, String
 
-  has n, :places
+  # has n, :places
 
 end
