@@ -19,7 +19,8 @@ class BNB < Sinatra::Base
   end
 
   post '/places/new' do
-    place = Place.create(name: params[:placename], location: params[:location], description: params[:description], price: params[:price])
+    p params
+    place = Place.create(name: params[:placename], location: params[:location], description: params[:description], price: params[:price], date_from: params[:date_from], date_to: params[:date_to])
     if place.valid?
       redirect '/places'
     else

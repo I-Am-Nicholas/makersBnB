@@ -18,7 +18,12 @@ As an Owner,
 So that people can decide if they want to hire my space,
 I want to display a description of my space including,
 the price, the area and the property.
+
+As an Owner,
+So that people will know when the space is available to rent,
+I want to be able to offer a range of dates when the space available.
 ```
+
 
 ### TECHNOLOGIES
 
