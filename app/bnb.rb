@@ -23,24 +23,16 @@ class BNB < Sinatra::Base
   end
 
   post '/users' do
-    if params.has_value?('')
-      flash.now[:notice] = "Empty field: please check sign up form and try again"
-      erb :'/users/new'
-    else
-      if params[:password].size < 6
-        flash.now[:notice] = "Password length error: Password must be longer than 6 characters"
-        erb :'/users/new'
-      elsif !params[:email].include?('@')
-        flash.now[:notice] = "E-mail character error: Missing @ sign"
-        erb :'users/new'
-      else
-      user = User.create(name: params[:name],
-                  password: params[:password],
-                  password_confirmation: params[:password_confirmation],
-                  email: params[:email])
-      session[:user_id] = user.id
+    @user = User.create(name: params[:name],
+                password: params[:password],
+                password_confirmation: params[:password_confirmation],
+                email: params[:email])
+    if @user.valid?
+      session[:user_id] = @user.id
       redirect '/'
-      end
+    else
+      flash.now[:notice] = @user.errors.full_messages.flatten.join(',')
+      erb :'users/new'
     end
   end
 

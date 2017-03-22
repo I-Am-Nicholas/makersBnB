@@ -7,7 +7,7 @@ feature 'Sign Up Edge Casing' do
     fill_in :confirm_password, with: 'passw'
     fill_in :email, with: 'albert@albert.com'
     click_button 'Submit'
-    expect(page).to have_content("Password length error: Password must be longer than 6 characters")
+    expect(page).to have_content("Password must be longer than 6 characters")
   end
 
   scenario 'throw error when user does not enter an @ sign' do
@@ -17,7 +17,7 @@ feature 'Sign Up Edge Casing' do
     fill_in :confirm_password, with: 'password'
     fill_in :email, with: 'albert.com'
     click_button 'Submit'
-    expect(page).to have_content("E-mail character error: Missing @ sign")
+    expect(page).to have_content("Format error: Email address is not typed properly")
   end
-  
+
 end
