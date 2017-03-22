@@ -27,12 +27,17 @@ class BNB < Sinatra::Base
       flash.now[:notice] = "Empty field: please check sign up form and try again"
       erb :'/users/new'
     else
+      if params[:password].size < 6
+        flash.now[:notice] = "Password length error: Password must be longer than 6 characters"
+        erb :'/users/new'
+      else
       user = User.create(name: params[:name],
                   password: params[:password],
                   password_confirmation: params[:password_confirmation],
                   email: params[:email])
       session[:user_id] = user.id
       redirect '/'
+      end
     end
   end
 
