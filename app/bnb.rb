@@ -29,7 +29,7 @@ class BNB < Sinatra::Base
   end
 
   get '/places' do
-    @places = Place.all
+    @places = Place.all(:order => [ :id.desc ])
     erb :'places/list'
   end
   run! if app_file == $0
