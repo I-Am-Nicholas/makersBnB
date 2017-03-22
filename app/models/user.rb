@@ -10,7 +10,8 @@ class User
   attr_reader :password
   attr_accessor :password_confirmation
 
-  validates_confirmation_of :password
+  # from walkthrough, not sure if necessary
+  # validates_confirmation_of :password
 
   property :id,              Serial
   property :name,            String,  :required => true

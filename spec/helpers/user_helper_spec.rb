@@ -24,7 +24,7 @@ def sign_in
 end
 
 def sign_in_with_false_details
-  visit('/sessions/new')
+  visit '/sessions/new'
   fill_in :email, with: "albert@albert.com"
   fill_in :password, with: "incorrect password"
   click_button 'Sign in'
