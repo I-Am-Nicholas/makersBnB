@@ -12,10 +12,10 @@ class User
 
   # validates_confirmation_of :password
 
-  property :id, Serial
-  property :name, String
-  property :password_digest, Text
-  property :email, String
+  property :id,              Serial
+  property :name,            String,  :required => true
+  property :password_digest, Text,    :required => true
+  property :email,           String,  :required => true
 
   has n, :places
 

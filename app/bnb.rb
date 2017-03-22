@@ -23,13 +23,20 @@ class BNB < Sinatra::Base
   end
 
   post '/users' do
-    user = User.create(name: params[:name],
-                password: params[:password],
-                password_confirmation: params[:password_confirmation],
-                email: params[:email])
-    session[:user_id] = user.id
-    redirect ('/')
+    if params.has_value?('')
+      flash.now[:notice] = "Empty field: please check sign up form and try again"
+      erb :'/users/new'
+    else
+      user = User.create(name: params[:name],
+                  password: params[:password],
+                  password_confirmation: params[:password_confirmation],
+                  email: params[:email])
+      session[:user_id] = user.id
+      redirect '/'
+    end
   end
+
+
 
   get '/sessions/new' do
     erb :'sessions/new'
@@ -39,7 +46,7 @@ class BNB < Sinatra::Base
     user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
-      redirect to('/')
+      redirect to '/'
     else
       flash.now[:notice] = 'The email or password is incorrect'
       erb :'sessions/new'
