@@ -37,12 +37,6 @@ As a User,
 so that I'm unable to create false data during sign up,
 I want sign up to throw error messages if fields are left blank.
 
-#possible repetition of user story above, maybe an extension.
-
-As a User,
-so that I can understand what I'm doing wrong on the sign up page,
-I want to be able to see error messages upon what is incorrect.
-
 As a User,
 so that I can be greeted formally,
 I want name to be required when signing up.

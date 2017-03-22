@@ -10,9 +10,6 @@ class User
   attr_reader :password
   attr_accessor :password_confirmation
 
-  # from walkthrough, not sure if necessary
-  # validates_confirmation_of :password
-
   property :id,              Serial
   property :name,            String,  :required => true
   property :password_digest, Text,    :required => true
@@ -26,11 +23,7 @@ class User
 
   def self.authenticate(email, password)
     user = first(email: email)
-    if user && BCrypt::Password.new(user.password_digest) == password
-      user
-    else
-      nil
-    end
+    user if user && BCrypt::Password.new(user.password_digest) == password
   end
 
 end

@@ -19,4 +19,5 @@ feature 'User Sign in' do
       expect(page).to have_text "Incorrect email or password: Please try again"
     end
   end
+  
 end

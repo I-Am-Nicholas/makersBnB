@@ -30,6 +30,9 @@ class BNB < Sinatra::Base
       if params[:password].size < 6
         flash.now[:notice] = "Password length error: Password must be longer than 6 characters"
         erb :'/users/new'
+      elsif !params[:email].include?('@')
+        flash.now[:notice] = "E-mail character error: Missing @ sign"
+        erb :'users/new'
       else
       user = User.create(name: params[:name],
                   password: params[:password],
@@ -40,8 +43,6 @@ class BNB < Sinatra::Base
       end
     end
   end
-
-
 
   get '/sessions/new' do
     erb :'sessions/new'
