@@ -10,6 +10,5 @@ class Place
   property :description, Text, :required => true
   property :date_from, Date
   property :date_to, Date
-  # belongs_to :user
 
 end
