@@ -1,23 +1,55 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="/style.css">
   <!-- <script src="https://code.jquery.com/jquery-3.2.0.js"></script> -->
 </head>
 <body>
-  <div>
-    <form action='/places/new' method='post'>
-      <label for="spacename">Place name:</label>
-      <input class='inputfield' type="text" name="placename" id="placename"><br>
-      <label for="location">Location:</label>
-      <input class='inputfield' type="text" name="location" id="location"><br>
-      <label for="description">Description:</label>
-      <textarea class='description' name="description" rows="6" cols="19" id="description"></textarea><br>
-      <label for="price">Price per night:</label>
-      <input class='inputfield' type="text" name="price" id="price"><br><br><br>
-      <input id='submit' type="submit" value="Submit">
-      </form>
+  <!-- <div class="container center_div center-block" style="border:1px solid black;"> -->
+
+  <form action='/places/new' method='post' role="form">
+
+    <div class="form-group row">
+      <label for="placename" class="col-sm-1 col-form-label col-md-offset-4 ">Place name:</label>
+      <div class="col-sm-2">
+        <input class="form-control" type="text" placeholder="Enter place name" id="placename" name="placename" required>
+      </div>
     </div>
+
+    <div class="form-group row">
+      <label for="location" class="col-sm-1 col-form-label col-md-offset-4">Location:</label>
+      <div class="col-sm-2">
+        <input class="form-control" type="text" placeholder="Enter location name" id="location" name="location">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="description" class="col-sm-1 col-form-label col-md-offset-4">Description:</label>
+        <div class="col-sm-2">
+          <textarea class="form-control" type="text" placeholder="Enter short description" id="description" name="description" rows="3" cols="2" required></textarea>
+        </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="price" class="col-sm-1 col-form-label col-md-offset-4">Price per night:</label>
+      <div class="col-sm-2">
+        <input class="form-control" type="text" placeholder="Enter price" id="price" name="price" required>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-offset-5">
+        <input id='submit' type="submit" value="Submit" class="btn btn-primary">
+      </div>
+   </div>
+
+  </form>
+
   <!-- <script src="/js/newplace.js" type="text/javascript"></script> -->
   </body>
   </html>
