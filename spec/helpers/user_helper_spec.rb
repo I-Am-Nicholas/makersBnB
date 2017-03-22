@@ -22,3 +22,10 @@ def sign_in
   fill_in :password, with: 'password'
   click_button 'Sign in'
 end
+
+def sign_in_with_false_details
+  visit('/sessions/new')
+  fill_in :email, with: "albert@albert.com"
+  fill_in :password, with: "incorrect password"
+  click_button 'Sign in'
+end

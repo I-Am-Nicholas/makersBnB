@@ -48,14 +48,14 @@ class BNB < Sinatra::Base
       session[:user_id] = user.id
       redirect to '/'
     else
-      flash.now[:notice] = 'The email or password is incorrect'
+      flash.now[:notice] = "Incorrect email or password: Please try again"
       erb :'sessions/new'
     end
   end
 
   delete '/sessions' do
     session[:user_id] = nil
-    flash.keep[:notice] = 'goodbye!'
+    flash.keep[:notice] = "goodbye!"
     redirect to '/'
   end
 
