@@ -15,6 +15,7 @@ require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
+require './spec/helpers/places'
 
 
 Capybara.app = BNB
@@ -39,6 +40,8 @@ Capybara.app = BNB
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+    config.include PlaceHelpers
   # Everything in this block runs once before all the tests run
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
