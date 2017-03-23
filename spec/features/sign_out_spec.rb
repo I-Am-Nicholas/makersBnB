@@ -2,7 +2,6 @@ feature 'User Sign Out' do
 
   scenario 'signing out after signing in' do
     sign_up
-    sign_in
     click_button 'Sign out'
     expect(page).to have_content("goodbye!")
   end

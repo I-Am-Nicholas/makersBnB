@@ -11,15 +11,15 @@ class BNB < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
-    "Hello World!"
+    erb :'index/index'
   end
 
   get '/places/new' do
     erb :'places/new'
   end
-  
+
    post '/places/new' do
-    place = Place.create(name: params[:placename], location: params[:location], description: params[:description], price: params[:price], date_from: params[:date_from], date_to: params[:date_to])
+    place = Place.create(name: params[:placename], location: params[:location], description: params[:description], price: params[:price], date_from: params[:date_from], date_to: params[:date_to], user_id: current_user.id)
       if place.valid?
         redirect '/places'
       else
@@ -27,7 +27,7 @@ class BNB < Sinatra::Base
         redirect '/places/new'
       end
     end
-  
+
    get '/places' do
       @places = Place.all(:order => [ :id.desc ])
       erb :'places/list'
@@ -44,7 +44,7 @@ class BNB < Sinatra::Base
                 email: params[:email])
     if @user.valid?
       session[:user_id] = @user.id
-      redirect '/'
+      redirect '/places'
     else
       flash.now[:notice] = @user.errors.full_messages.flatten.join(',')
       erb :'users/new'
@@ -77,7 +77,7 @@ class BNB < Sinatra::Base
       @current_user ||= User.get(session[:user_id])
     end
   end
-  
+
   run! if app_file == $0
 
 end

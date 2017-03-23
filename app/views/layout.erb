@@ -4,21 +4,39 @@
     <link rel="stylesheet" type="text/css" href="/style.css">
   </head>
   <body>
+
+<!--
+        <% if current_user == nil %>
+        <form method='get' action='/users/new'>
+          <input type='submit' name='signup' value='Sign Up'>
+        </form>
+        <form method='get' action='/places'>
+          <input type='submit' name='viewplaces' value='View places'>
+        </form>
+        <form method='get' action='/sessions/new'>
+          <input type='submit' name='signinroot' value='Sign in'>
+        </form>
+       <% end %> -->
+
     <% if current_user %>
     Welcome <%= current_user.name %>!
     <form method='post' action='/sessions'>
       <input type='hidden' name='_method' value='delete'>
       <input type='submit' name='Sign out' value='Sign out'>
     </form>
+    <form method='get' action='/places'>
+      <input type='submit' name='viewplaces' value='View places'>
+    </form>
    <% end %>
-    
+
     <% if flash[:notice] %>
       <div id='notice'><%= flash[:notice] %></div>
     <% end %>
     <% if flash[:message] %>
       <div id='notice'><%= flash[:message] %></div>
     <% end %>
+
     <%= yield %>
+
   </body>
 </html>
-
