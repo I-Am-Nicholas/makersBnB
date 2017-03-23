@@ -27,6 +27,12 @@
     <form method='get' action='/places'>
       <input type='submit' name='viewplaces' value='View places'>
     </form>
+    <form method='get' action='/places/new'>
+      <input type='submit' name='addplaces' value='Add places'>
+    </form>
+    <form method='get' action='/user/account'>
+      <input type='submit' name='myaccount' value='My Account'>
+    </form>
    <% end %>
 
     <% if flash[:notice] %>
