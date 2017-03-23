@@ -39,8 +39,14 @@ class BNB < Sinatra::Base
       erb :'booking/new'
     end
 
+    post '/approval/:place_id' do
+      request = Booking.first(:place_id => params[:place_id])
+      request.update(:status => 'Approved')
+      redirect '/user/account'
+    end
+
     post'/bookings/new' do
-      booking = Booking.create(current_user_email: params[:current_user_email], owner_email: current_place.user.email, date_from: params[:book_from], date_to: params[:book_to], message: params[:message], user_id: current_user.id, place_id: current_place.id )
+      booking = Booking.create(status: 'Pending Approval', current_user_email: params[:current_user_email], owner_email: current_place.user.email, date_from: params[:book_from], date_to: params[:book_to], message: params[:message], user_id: current_user.id, place_id: current_place.id )
       if booking.valid?
         "Hello"
       else
@@ -86,6 +92,12 @@ class BNB < Sinatra::Base
     session[:user_id] = nil
     flash.keep[:notice] = "goodbye!"
     redirect to '/'
+  end
+
+  get '/user/account' do
+    @approvals = Booking.all(:owner_email => current_user.email)
+    @requests = Booking.all(:user_id => current_user.id)
+    erb :'users/account'
   end
 
   helpers do
