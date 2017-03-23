@@ -7,15 +7,31 @@ require 'sinatra/flash'
 class BNB < Sinatra::Base
   enable :sessions, :method_override
   set :sessions_secret, 'super secret'
+
   register Sinatra::Flash
 
   get '/' do
-    erb :'index/index'
+    "Hello World!"
   end
 
   get '/places/new' do
     erb :'places/new'
   end
+  
+   post '/places/new' do
+    place = Place.create(name: params[:placename], location: params[:location], description: params[:description], price: params[:price], date_from: params[:date_from], date_to: params[:date_to])
+      if place.valid?
+        redirect '/places'
+      else
+        flash[:message] = place.errors.full_messages.join(", ")
+        redirect '/places/new'
+      end
+    end
+  
+   get '/places' do
+      @places = Place.all(:order => [ :id.desc ])
+      erb :'places/list'
+    end
 
   get '/users/new' do
     erb :'users/new'
@@ -61,7 +77,7 @@ class BNB < Sinatra::Base
       @current_user ||= User.get(session[:user_id])
     end
   end
-
+  
   run! if app_file == $0
 
 end

@@ -8,15 +8,19 @@ SimpleCov.formatters = [
   Coveralls::SimpleCov::Formatter
 ]
 Coveralls.wear!
-
 ENV['RACK_ENV'] = 'test'
+
 
 require './app/bnb'
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
 require 'database_cleaner'
+
 require_relative "./helpers/user_helper_spec"
+require './spec/helpers/places'
+
+
 
 Capybara.app = BNB
 
@@ -40,6 +44,8 @@ Capybara.app = BNB
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+
+    config.include PlaceHelpers
   # Everything in this block runs once before all the tests run
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
@@ -56,7 +62,7 @@ RSpec.configure do |config|
   config.append_after(:each) do
     DatabaseCleaner.clean
   end
-config.include Capybara::DSL
+
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
