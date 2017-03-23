@@ -19,4 +19,11 @@ module PlaceHelpers
     click_button('submit')
   end
 
+  def book_place
+    click_button('bookthis')
+    fill_in :message, with: 'Let me book!'
+    fill_in :book_from, with: '2017-03-30'
+    fill_in :book_to, with: '2017-04-01'
+  end
+
 end
