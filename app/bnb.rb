@@ -33,6 +33,16 @@ class BNB < Sinatra::Base
       erb :'places/list'
     end
 
+    get '/places/:place_id' do
+      @place = Place.first(:id => params[:place_id])
+      erb :'booking/new'
+    end
+
+    post'/bookings/new' do
+      p params
+      "Hello"
+    end
+
   get '/users/new' do
     erb :'users/new'
   end
