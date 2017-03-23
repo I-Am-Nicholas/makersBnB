@@ -7,16 +7,13 @@ class User
   include DataMapper::Resource
   include BCrypt
 
-  attr_reader :password
-  attr_accessor :password_confirmation
-
   property :id,              Serial
   property :name,            String,  :required => true,
   :messages => {
     :presence   => "Empty field: please check sign up form and try again"
   }
 
-  property :password_salt, Text,    :required => true
+  property :password_salt, Text,      :required => true
   property :email,           String,  :required => true, :format => :email_address, :unique => true,
   :messages => {
     :presence   => "Missing fields: Email address required",
@@ -25,12 +22,17 @@ class User
   }
   has n, :places
 
+  attr_reader :password
+  attr_accessor :password_confirmation
+
+
   def password=(password)
+    @password = password
     self.password_salt = BCrypt::Password.create(password)
   end
 
-  validates_confirmation_of :password, :message => "Incorrect email or password: Please try again"
-  # validates_length_of :password,  :message => "Password must be longer than 6 characters"
+  validates_confirmation_of :password, :message => "Password and Confirmation do not match"
+  validates_length_of :password, :min => 6, :message => "Password must be longer than 6 characters"
 
   def self.authenticate(email, password)
     user = first(email: email)

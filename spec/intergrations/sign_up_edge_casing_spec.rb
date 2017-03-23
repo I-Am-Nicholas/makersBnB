@@ -4,7 +4,7 @@ feature 'Sign Up Edge Casing' do
     visit '/users/new'
     fill_in :name, with: 'Albert'
     fill_in :password, with: 'passw'
-    fill_in :confirm_password, with: 'passw'
+    fill_in :password_confirmation, with: 'passw'
     fill_in :email, with: 'albert@albert.com'
     click_button 'Submit'
     expect(page).to have_content("Password must be longer than 6 characters")
@@ -14,7 +14,7 @@ feature 'Sign Up Edge Casing' do
     visit '/users/new'
     fill_in :name, with: 'Albert'
     fill_in :password, with: 'password'
-    fill_in :confirm_password, with: 'password'
+    fill_in :password_confirmation, with: 'password'
     fill_in :email, with: 'albert.com'
     click_button 'Submit'
     expect(page).to have_content("Format error: Email address is not typed properly")

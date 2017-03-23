@@ -5,10 +5,9 @@ require 'sinatra/base'
 require 'sinatra/flash'
 
 class BNB < Sinatra::Base
-  enable :sessions
+  enable :sessions, :method_override
   set :sessions_secret, 'super secret'
   register Sinatra::Flash
-  use Rack::MethodOverride
 
   get '/' do
     erb :'index/index'
