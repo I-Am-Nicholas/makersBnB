@@ -35,11 +35,12 @@ class BNB < Sinatra::Base
 
     get '/places/:place_id' do
       @place = Place.first(:id => params[:place_id])
+      session[:place_id] = params[:place_id]
       erb :'booking/new'
     end
 
     post'/bookings/new' do
-      p params
+      p params, current_place.user.email
       "Hello"
     end
 
@@ -85,6 +86,9 @@ class BNB < Sinatra::Base
   helpers do
     def current_user
       @current_user ||= User.get(session[:user_id])
+    end
+    def current_place
+      @current_place ||= Place.get(session[:place_id])
     end
   end
 
