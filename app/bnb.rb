@@ -40,8 +40,13 @@ class BNB < Sinatra::Base
     end
 
     post'/bookings/new' do
-      p params, current_place.user.email
-      "Hello"
+      booking = Booking.create(current_user_email: params[:current_user_email], owner_email: current_place.user.email, date_from: params[:book_from], date_to: params[:book_to], message: params[:message], user_id: current_user.id, place_id: current_place.id )
+      if booking.valid?
+        "Hello"
+      else
+        flash[:message] = booking.errors.full_messages.join(", ")
+        redirect '/places'
+      end
     end
 
   get '/users/new' do
