@@ -1,13 +1,24 @@
 <html>
   <head>
-    <title>MakersBnB</title>
+    <title></title>
     <link rel="stylesheet" type="text/css" href="/style.css">
   </head>
   <body>
-    Welcome Owner
+    <% if current_user %>
+    Welcome <%= current_user.name %>!
+    <form method='post' action='/sessions'>
+      <input type='hidden' name='_method' value='delete'>
+      <input type='submit' name='Sign out' value='Sign out'>
+    </form>
+   <% end %>
+    
+    <% if flash[:notice] %>
+      <div id='notice'><%= flash[:notice] %></div>
+    <% end %>
     <% if flash[:message] %>
       <div id='notice'><%= flash[:message] %></div>
     <% end %>
     <%= yield %>
   </body>
 </html>
+

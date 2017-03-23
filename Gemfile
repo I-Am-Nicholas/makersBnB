@@ -16,4 +16,5 @@ end
 group :database do
   gem 'datamapper', '~>1.2'
   gem 'dm-postgres-adapter'
+  gem 'bcrypt'
 end
