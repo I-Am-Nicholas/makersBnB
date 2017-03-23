@@ -1,17 +1,16 @@
 require 'data_mapper'
 require 'dm-postgres-adapter'
 
-class Place
+class Booking
   include DataMapper::Resource
 
-
-  property :id, Serial
-  property :current_user_email, String, :required => true
-  property :price, Integer, :required => true
-  property :description, Text, :required => true
-  property :date_from, Date
-  property :date_to, Date
+  property :id,                 Serial
+  property :current_user_email, String,  :required => true, :format => :email_address
+  property :owner_email,        String,  :required => true, :format => :email_address
+  property :date_from,          Date
+  property :date_to,            Date
+  property :message,            Text
 
   belongs_to :user
-
+  belongs_to :place
 end
