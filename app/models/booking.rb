@@ -10,6 +10,7 @@ class Booking
   property :date_from,          Date
   property :date_to,            Date
   property :message,            Text
+  property :status,             String
 
   belongs_to :user
   belongs_to :place
