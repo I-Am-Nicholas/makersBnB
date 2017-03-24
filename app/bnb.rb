@@ -40,7 +40,7 @@ class BNB < Sinatra::Base
     end
 
     post '/approval/:place_id' do
-      request = Booking.first(:place_id => params[:place_id])
+      request = Booking.last(:place_id => params[:place_id])
       request.update(:status => 'Approved')
       redirect '/user/account'
     end
@@ -48,7 +48,8 @@ class BNB < Sinatra::Base
     post'/bookings/new' do
       booking = Booking.create(status: 'Pending Approval', current_user_email: params[:current_user_email], owner_email: current_place.user.email, date_from: params[:book_from], date_to: params[:book_to], message: params[:message], user_id: current_user.id, place_id: current_place.id )
       if booking.valid?
-        "Hello"
+        flash[:message] = 'Your request has been sent to the owner. Awaiting approval.'
+        redirect('/')
       else
         flash[:message] = booking.errors.full_messages.join(", ")
         redirect '/places'
