@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>List of places for hire</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+  </head>
+  <body>
+
+    <h3>Requests for you to approve</h3>
+
+      <ul id="approvalist">
+        <% @approvals.each do |approval| %>
+        <div class="card style="width: 20rem;"">
+          <h4>Potential Guest: <%= approval.user.name %></h4>
+          <div class="card-block">
+            <h4 class="card-title">Place Name: <%= approval.place.name %></h4>
+            <p class="card-text">Message from user: <%= approval.message %></p>
+          </div>
+          <ul class="list-group" >
+            <li class="list-group-item list-group-item-success" style="height:50px; width: 250px">
+              <form action='/approval/<%=approval.place.id%>' method='post'>
+                <input id='approve'name="approve" type="submit" value="Approve">
+              </form>
+            </li>
+          </ul>
+        </div>
+        <% end %>
+      </ul>
+
+      <h3>Your requests' status:</h3>
+
+      <ul id="approvalist">
+        <% @requests.each do |request| %>
+        <div class="card style="width: 20rem;"">
+          <h4>Requested by: <%= request.user.name %></h4>
+          <div class="card-block">
+            <h4 class="card-title">Place Name: <%= request.place.name %></h4>
+            <p class="card-text">Message with request: <%= request.message %></p>
+          </div>
+          <ul class="list-group" >
+            <li class="list-group-item list-group-item-success" style="height:50px; width: 250px">Status: <%=request.status%></li>
+          </ul>
+        </div>
+        <% end %>
+      </ul>
+
+  </body>
+</html>
+
+<!-- # <% @approvals.each do |approval| %>
+# <h4><%= approval.user.name %> said <%= approval.message %> about <%= approval.place.name %></h4>
+# <form action='/approval/<%=approval.place.id%>' method='post'>
+#   <input id='approve'name="approve" type="submit" value="Approve">
+# </form>
+# <% end %> -->
+
+<!-- # <% @requests.each do |request| %>
+# <h4><%= request.user.name %> said <%= request.message %> about <%= request.place.name %></h4>
+# <h4>Status: <%=request.status%></h4>
+# <% end %> -->

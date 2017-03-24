@@ -33,6 +33,29 @@ class BNB < Sinatra::Base
       erb :'places/list'
     end
 
+    get '/places/:place_id' do
+      @place = Place.first(:id => params[:place_id])
+      session[:place_id] = params[:place_id]
+      erb :'booking/new'
+    end
+
+    post '/approval/:place_id' do
+      request = Booking.last(:place_id => params[:place_id])
+      request.update(:status => 'Approved')
+      redirect '/user/account'
+    end
+
+    post'/bookings/new' do
+      booking = Booking.create(status: 'Pending Approval', current_user_email: params[:current_user_email], owner_email: current_place.user.email, date_from: params[:book_from], date_to: params[:book_to], message: params[:message], user_id: current_user.id, place_id: current_place.id )
+      if booking.valid?
+        flash[:message] = 'Your request has been sent to the owner. Awaiting approval.'
+        redirect('/')
+      else
+        flash[:message] = booking.errors.full_messages.join(", ")
+        redirect '/places'
+      end
+    end
+
   get '/users/new' do
     erb :'users/new'
   end
@@ -72,9 +95,18 @@ class BNB < Sinatra::Base
     redirect to '/'
   end
 
+  get '/user/account' do
+    @approvals = Booking.all(:owner_email => current_user.email)
+    @requests = Booking.all(:user_id => current_user.id)
+    erb :'users/account'
+  end
+
   helpers do
     def current_user
       @current_user ||= User.get(session[:user_id])
+    end
+    def current_place
+      @current_place ||= Place.get(session[:place_id])
     end
   end
 

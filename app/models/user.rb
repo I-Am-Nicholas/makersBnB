@@ -21,6 +21,7 @@ class User
     :format     => "Format error: Email address is not typed properly"
   }
   has n, :places
+  has n, :bookings
 
   attr_reader :password
   attr_accessor :password_confirmation

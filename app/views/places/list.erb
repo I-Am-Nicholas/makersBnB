@@ -21,6 +21,13 @@ Location: <%= place.location %></li>
             <li class="list-group-item list-group-item-info" style="height:50px; width: 250px">Price per night: <%= place.price %></li>
             <li class="list-group-item list-group-item-success" style="height:50px; width: 250px">Available from: <%= place.date_from %></li>
             <li class="list-group-item list-group-item-info" style="height:50px; width: 250px">Available till: <%= place.date_to %></li>
+            <%if current_user%>
+            <li class="list-group-item list-group-item-success" style="height:50px; width: 250px">
+              <form action='/places/<%=place.id%>' method='get'>
+                <input id='bookthis' type="submit" value="Book This" name="bookthis" id="<%=place.id%>">
+              </form>
+            </li>
+            <% end %>
           </ul>
         </div>
         <% end %>

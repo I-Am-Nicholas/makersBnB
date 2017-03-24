@@ -5,18 +5,25 @@
   </head>
   <body>
 
-<!--
-        <% if current_user == nil %>
-        <form method='get' action='/users/new'>
-          <input type='submit' name='signup' value='Sign Up'>
-        </form>
-        <form method='get' action='/places'>
-          <input type='submit' name='viewplaces' value='View places'>
-        </form>
-        <form method='get' action='/sessions/new'>
-          <input type='submit' name='signinroot' value='Sign in'>
-        </form>
-       <% end %> -->
+    <form method='get' action='/'>
+      <input type='submit' name='home' value='Home'>
+    </form>
+
+    <% if current_user == nil %>
+    <div class="layoutbtn">
+      <form method='get' action='/users/new'>
+        <input type='submit' class="nav-link" name='joinus' value='Join Us'>
+      </form>
+
+      <form method='get' action='/places' class="form-inline my-2 my-lg-0">
+        <input type='submit' class="nav-link" name='lookaround' value='Look Around'>
+      </form>
+
+      <form method='get' action='/sessions/new' class="form-inline my-2 my-lg-0">
+        <input type='submit' class="nav-link" name='checkaccount' value='Check Account'>
+      </form>
+  </div>
+    <% end %>
 
     <% if current_user %>
     Welcome <%= current_user.name %>!
@@ -26,6 +33,12 @@
     </form>
     <form method='get' action='/places'>
       <input type='submit' name='viewplaces' value='View places'>
+    </form>
+    <form method='get' action='/places/new'>
+      <input type='submit' name='addplaces' value='Add places'>
+    </form>
+    <form method='get' action='/user/account'>
+      <input type='submit' name='myaccount' value='My Account'>
     </form>
    <% end %>
 

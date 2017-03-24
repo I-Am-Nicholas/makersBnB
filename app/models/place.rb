@@ -14,5 +14,5 @@ class Place
   property :date_to, Date
 
   belongs_to :user
-
+  has n, :bookings
 end
